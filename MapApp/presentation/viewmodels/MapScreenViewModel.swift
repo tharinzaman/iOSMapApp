@@ -7,7 +7,7 @@
 
 import MapKit
 
-final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+final class MapScreenViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     private let locationHelper: LocationHelper
     
@@ -29,14 +29,13 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
             if let userLocation = locationHelper.getUserLocation() {
                 self.region = userLocation
             }
-        
         }
     }
     
 }
 
 // MARK: Extension for delegate methods
-extension MapViewModel {
+extension MapScreenViewModel {
     
     func locationManager(
         _ manager: CLLocationManager,

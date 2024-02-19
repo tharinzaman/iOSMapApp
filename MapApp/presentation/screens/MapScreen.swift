@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct MapView: View {
+struct MapScreen: View {
     
     @StateObject private var vm: MapViewModel
     
