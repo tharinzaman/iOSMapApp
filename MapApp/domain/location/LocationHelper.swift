@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import MapKit
+
+protocol LocationHelper {
+    func checkIfLocationServicesAreEnabled()
+    func checkIfLocationPermissionsAreGranted() -> Bool
+    func getUserLocation() -> MKCoordinateRegion?
+}
