@@ -15,10 +15,12 @@ enum MapConstants {
         longitudeDelta: 0.01
     )
     static let defaultLocation = CLLocationCoordinate2D(
-        latitude: 0,
-        longitude: 0
+        latitude: 0.0,
+        longitude: 0.0
     )
-
+    
+    static let lat = 0.0
+    static let long = 0.0
 }
 
 enum Strings {

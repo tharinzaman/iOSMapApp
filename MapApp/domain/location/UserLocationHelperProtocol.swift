@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-protocol LocationHelper {
+protocol UserLocationHelperProtocol {
     func checkIfLocationServicesAreEnabled()
     func checkIfLocationPermissionsAreGranted() -> Bool
     func getUserLocation() -> MKCoordinateRegion?

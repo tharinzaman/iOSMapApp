@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-class LocationHelperImpl: NSObject, CLLocationManagerDelegate {
+class UserLocationHelperImpl: NSObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager?
     
@@ -26,14 +26,14 @@ class LocationHelperImpl: NSObject, CLLocationManagerDelegate {
             return nil
         }
         return MKCoordinateRegion(
-            center: locationManager.location?.coordinate ?? Constants.defaultLocation,
-            span: Constants.span
+            center: locationManager.location?.coordinate ?? MapConstants.defaultLocation,
+            span: MapConstants.span
         )
     }
 }
 
 // MARK: Extension for checking location services and permissions
-extension LocationHelperImpl: LocationHelper {
+extension UserLocationHelperImpl: UserLocationHelper {
     
     func checkIfLocationServicesAreEnabled() {
         if CLLocationManager.locationServicesEnabled() {
