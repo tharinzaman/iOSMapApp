@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-enum Constants {
+enum MapConstants {
     
     static let span = MKCoordinateSpan(
         latitudeDelta: 0.01,
@@ -19,4 +19,13 @@ enum Constants {
         longitude: 0
     )
 
+}
+
+enum Strings {
+    
+    static let Welcome = "WELCOME"
+    static let WhereTo = "WHERE TO?"
+    static let MyLocation = "MY LOCATION"
+    static let RandomLocation = "RANDOM LOCATION"
+    
 }
