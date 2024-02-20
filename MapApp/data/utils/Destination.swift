@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum Destination {
+    case UserLocation
+    case RandomLocation
+}

@@ -7,41 +7,22 @@
 
 import MapKit
 
-final class WelcomeScreenViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+final class WelcomeScreenViewModel: ObservableObject {
     
-    private let locationHelper: LocationHelper
+    private let locationHelper: UserLocationHelperProtocol
     
-    init(locationHelper: LocationHelper) {
+    init(
+        locationHelper: UserLocationHelperProtocol
+    ) {
         self.locationHelper = locationHelper
     }
-    
-    @Published var region = MKCoordinateRegion(
-        center: Constants.defaultLocation,
-        span: Constants.span
-    )
     
     func checkLocationServices() {
         locationHelper.checkIfLocationServicesAreEnabled()
     }
     
     func checkLocationPermissions() {
-        if locationHelper.checkIfLocationPermissionsAreGranted() {
-            if let userLocation = locationHelper.getUserLocation() {
-                self.region = userLocation
-            }
-        }
-    }
-    
-}
-
-// MARK: Extension for delegate methods
-extension WelcomeScreenViewModel {
-    
-    func locationManager(
-        _ manager: CLLocationManager,
-        didChangeAuthorization status: CLAuthorizationStatus
-    ) {
-        checkLocationPermissions()
+        locationHelper.checkIfLocationPermissionsAreGranted()
     }
     
 }

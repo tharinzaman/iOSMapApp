@@ -6,3 +6,14 @@
 //
 
 import Foundation
+import Combine
+
+protocol NetworkClientProtocol {
+    
+    func fetch(
+        session: URLSession
+    ) async throws -> RandomLocation
+    
+    func fetchWithCombine() throws -> AnyPublisher<RandomLocationModel, Error>
+    
+}

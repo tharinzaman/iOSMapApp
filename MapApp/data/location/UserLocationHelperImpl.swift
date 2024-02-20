@@ -33,7 +33,7 @@ class UserLocationHelperImpl: NSObject, CLLocationManagerDelegate {
 }
 
 // MARK: Extension for checking location services and permissions
-extension UserLocationHelperImpl: UserLocationHelper {
+extension UserLocationHelperImpl: UserLocationHelperProtocol {
     
     func checkIfLocationServicesAreEnabled() {
         if CLLocationManager.locationServicesEnabled() {

@@ -25,9 +25,13 @@ enum MapConstants {
 
 enum Strings {
     
+    static let Empty = ""
+    
     static let Welcome = "WELCOME"
     static let WhereTo = "WHERE TO?"
     static let MyLocation = "MY LOCATION"
     static let RandomLocation = "RANDOM LOCATION"
+    
+    static let Unknown = "Unknown"
     
 }

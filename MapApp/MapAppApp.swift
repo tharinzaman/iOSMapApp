@@ -12,10 +12,11 @@ import MapKit
 struct MapAppApp: App {
     var body: some Scene {
         WindowGroup {
-            MapView(
-                locationHelper: LocationHelperImpl(
+            WelcomeScreen(
+                locationHelper: UserLocationHelperImpl(
                     locationManager: CLLocationManager.locationServicesEnabled() ? CLLocationManager() : nil
-                )
+                ),
+                client: NetworkClientImpl()
             )
         }
     }
