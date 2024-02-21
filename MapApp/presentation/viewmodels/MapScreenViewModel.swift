@@ -14,42 +14,56 @@ final class MapScreenViewModel: ObservableObject {
     
     private let locationHelper: UserLocationHelperProtocol
     private let client: NetworkClientProtocol
+    private let alertHelper: AlertHelper
     
     private var cancellables = Set<AnyCancellable>()
     
     init(
         locationHelper: UserLocationHelperProtocol,
         client: NetworkClientProtocol,
+        alertHelper: AlertHelper,
         destination: Destination
     ) {
         self.locationHelper = locationHelper
         self.client = client
+        self.alertHelper = alertHelper
         // MARK: Uncomment/Comment the following lines if you want/don't want to use combine
-        if destination == .RandomLocation {
-            getRandomLocationWithCombine()
-        }
+        //        if destination == .RandomLocation {
+        //            getRandomLocationWithCombine()
+        //        }
     }
     
     @Published var position = MapCameraPosition
         .region(
             MKCoordinateRegion(
-                center: MapConstants.defaultLocation,
-                span: MapConstants.span
+                center: MapConstants.DEFAULT_LOCATION,
+                span: MapConstants.SPAN
             )
         )
     @Published var randomLocation = RandomLocation(
-        lat: String(MapConstants.lat),
-        long: String(MapConstants.long),
-        name: String(Strings.Empty)
+        lat: String(
+            MapConstants.LAT
+        ),
+        long: String(
+            MapConstants.LONG
+        ),
+        name: String(
+            Strings.EMPTY
+        )
     )
+    @Published var alert: AlertModel? = nil
     
     func getUserLocation() {
-        if locationHelper.checkIfLocationPermissionsAreGranted() {
-            if let userLocation = locationHelper.getUserLocation() {
-                self.position = MapCameraPosition.region(
-                    userLocation
-                )
+        do {
+            if try locationHelper.checkIfLocationPermissionsAreGranted() {
+                if let userLocation = locationHelper.getUserLocation() {
+                    self.position = MapCameraPosition.region(
+                        userLocation
+                    )
+                }
             }
+        } catch {
+            self.alert = alertHelper.errorToUserLocationAlert(error: error)
         }
     }
     
@@ -68,18 +82,19 @@ extension MapScreenViewModel {
             self.position = MapCameraPosition.region(
                 MKCoordinateRegion(
                     center: CLLocationCoordinate2D(
-                        latitude: Double(randomLocation.lat) ?? MapConstants.lat,
-                        longitude: Double(randomLocation.long) ?? MapConstants.long
+                        latitude: Double(
+                            randomLocation.lat
+                        ) ?? MapConstants.LAT,
+                        longitude: Double(
+                            randomLocation.long
+                        ) ?? MapConstants.LONG
                     ),
-                    span: MapConstants.span
+                    span: MapConstants.SPAN
                 )
             )
             self.randomLocation = randomLocation
         } catch {
-            // TODO: Generate an alert
-            print(
-                "Error: \(error.localizedDescription)"
-            )
+            self.alert = alertHelper.errorToNetworkError(error: error)
         }
     }
     
@@ -89,29 +104,32 @@ extension MapScreenViewModel {
                 .sink { completion in
                     switch completion {
                     case .finished:
-                        // Don't actually need to do anything
-                        print("Finished")
-                    case .failure(_):
-                        self.randomLocation.name = Strings.Unknown
+                        return
+                    case .failure(let error):
+                        self.randomLocation.name = Strings.UNKNOWN
+                        self.alert = self.alertHelper.errorToNetworkError(error: error)
                     }
                 } receiveValue: { [weak self] randomLocation in
-                    self?.randomLocation = randomLocation.location
                     self?.position = MapCameraPosition.region(
                         MKCoordinateRegion(
                             center: CLLocationCoordinate2D(
-                                latitude: Double(randomLocation.location.lat) ?? MapConstants.lat,
-                                longitude: Double(randomLocation.location.long) ?? MapConstants.long
+                                latitude: Double(
+                                    randomLocation.location.lat
+                                ) ?? MapConstants.LAT,
+                                longitude: Double(
+                                    randomLocation.location.long
+                                ) ?? MapConstants.LONG
                             ),
-                            span: MapConstants.span
+                            span: MapConstants.SPAN
                         )
                     )
+                    self?.randomLocation = randomLocation.location
                 }
                 .store(
                     in: &cancellables
                 )
         } catch {
-            // TODO: Generate an alert
-            print("Error: \(error.localizedDescription)")
+            self.alert = alertHelper.errorToNetworkError(error: error)
         }
     }
 }

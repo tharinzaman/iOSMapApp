@@ -16,18 +16,22 @@ struct WelcomeScreen: View {
     
     private let locationHelper: UserLocationHelperProtocol
     private let client: NetworkClientProtocol
+    private let alertHelper: AlertHelper
     
     @StateObject var vm: WelcomeScreenViewModel
     
     init(
         locationHelper: UserLocationHelperProtocol,
+        alertHelper: AlertHelper,
         client: NetworkClientProtocol
     ) {
         self.locationHelper = locationHelper
+        self.alertHelper = alertHelper
         self.client = client
         _vm = StateObject(
             wrappedValue: WelcomeScreenViewModel(
-                locationHelper: locationHelper
+                locationHelper: locationHelper,
+                alertHelper: alertHelper
             )
         )
     }
@@ -56,12 +60,14 @@ struct WelcomeScreen: View {
                         NavigateButton(
                             destination: .UserLocation,
                             client: client,
-                            locationHelper: locationHelper
+                            locationHelper: locationHelper,
+                            alertHelper: alertHelper
                         )
                         NavigateButton(
                             destination: .RandomLocation,
                             client: client,
-                            locationHelper: locationHelper
+                            locationHelper: locationHelper,
+                            alertHelper: alertHelper
                         )
                     }
                 }
@@ -71,6 +77,15 @@ struct WelcomeScreen: View {
                 vm.checkLocationServices()
                 vm.checkLocationPermissions()
             }
+            .alert(
+                item: $vm.alert
+            ) { alert in
+                Alert(
+                    title: alert.title,
+                    message: alert.message,
+                    dismissButton: alert.dismissButton
+                )
+            }
         }
     }
 }
@@ -78,7 +93,7 @@ struct WelcomeScreen: View {
 struct WelcomeText: View {
     var body: some View {
         Text(
-            Strings.Welcome
+            Strings.WELCOME
         )
         .font(
             .title
@@ -95,7 +110,7 @@ struct WelcomeText: View {
 struct WhereToText: View {
     var body: some View {
         Text(
-            Strings.WhereTo
+            Strings.WHERE_TO
         )
         .font(
             .title3
@@ -114,13 +129,14 @@ struct NavigateButton: View {
     let destination: Destination
     let client: NetworkClientProtocol
     let locationHelper: UserLocationHelperProtocol
+    let alertHelper: AlertHelper
     
     var destinationString: String {
         switch destination {
         case .UserLocation:
-            Strings.MyLocation
+            Strings.MY_LOCATION
         default:
-            Strings.RandomLocation
+            Strings.RANDOM_LOCATION
         }
     }
     
@@ -130,6 +146,7 @@ struct NavigateButton: View {
             destination: MapScreen(
                 locationHelper: locationHelper,
                 client: client,
+                alertHelper: alertHelper,
                 destination: destination
             )
         ).buttonStyle(

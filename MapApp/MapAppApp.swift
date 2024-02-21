@@ -16,6 +16,7 @@ struct MapAppApp: App {
                 locationHelper: UserLocationHelperImpl(
                     locationManager: CLLocationManager.locationServicesEnabled() ? CLLocationManager() : nil
                 ),
+                alertHelper: AlertHelperImpl(),
                 client: NetworkClientImpl()
             )
         }

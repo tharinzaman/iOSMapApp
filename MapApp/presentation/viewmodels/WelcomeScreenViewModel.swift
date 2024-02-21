@@ -10,19 +10,32 @@ import MapKit
 final class WelcomeScreenViewModel: ObservableObject {
     
     private let locationHelper: UserLocationHelperProtocol
+    private let alertHelper: AlertHelper
+    
+    @Published var alert: AlertModel? = nil
     
     init(
-        locationHelper: UserLocationHelperProtocol
+        locationHelper: UserLocationHelperProtocol,
+        alertHelper: AlertHelper
     ) {
         self.locationHelper = locationHelper
+        self.alertHelper = alertHelper
     }
     
     func checkLocationServices() {
-        locationHelper.checkIfLocationServicesAreEnabled()
+        do {
+            try locationHelper.checkIfLocationServicesAreEnabled()
+        } catch {
+            self.alert = AlertItem.locationServicesDisabled
+        }
     }
     
     func checkLocationPermissions() {
-        locationHelper.checkIfLocationPermissionsAreGranted()
+        do {
+            try locationHelper.checkIfLocationPermissionsAreGranted()
+        } catch {
+            self.alert = alertHelper.errorToUserLocationAlert(error: error)
+        }
     }
     
 }

@@ -22,12 +22,18 @@ class UserLocationHelperImpl: NSObject, CLLocationManagerDelegate {
         guard let locationManager else {
             return nil
         }
-        guard checkIfLocationPermissionsAreGranted() == true else {
+        
+        do {
+            guard try checkIfLocationPermissionsAreGranted() == true else {
+                return nil
+            }
+        } catch {
             return nil
         }
+        
         return MKCoordinateRegion(
-            center: locationManager.location?.coordinate ?? MapConstants.defaultLocation,
-            span: MapConstants.span
+            center: locationManager.location?.coordinate ?? MapConstants.DEFAULT_LOCATION,
+            span: MapConstants.SPAN
         )
     }
 }
@@ -35,16 +41,16 @@ class UserLocationHelperImpl: NSObject, CLLocationManagerDelegate {
 // MARK: Extension for checking location services and permissions
 extension UserLocationHelperImpl: UserLocationHelperProtocol {
     
-    func checkIfLocationServicesAreEnabled() {
+    func checkIfLocationServicesAreEnabled() throws {
         if CLLocationManager.locationServicesEnabled() {
             locationManager?.desiredAccuracy = kCLLocationAccuracyBest
             locationManager?.delegate = self
         } else {
-            // TODO: Show an alert saying that location services are disabled and to allow in settings
+            throw UserLocationError.locationServicesDisabled
         }
     }
     
-    func checkIfLocationPermissionsAreGranted() -> Bool {
+    func checkIfLocationPermissionsAreGranted() throws -> Bool {
         guard let locationManager else {
             return false
         }
@@ -53,16 +59,13 @@ extension UserLocationHelperImpl: UserLocationHelperProtocol {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            //TODO: Show alert saying that permissions are restricted
-            return false
+            throw UserLocationError.restrictedPermissions
         case .denied:
-            //TODO: Show alert saying that permissions have been denied and they can allow in settings
-            return false
+            throw UserLocationError.deniedPermissions
         case .authorizedAlways, .authorizedWhenInUse:
             return true
         @unknown default:
-            // TODO: Show alert saying that permissions are unresolved.
-            return false
+            throw UserLocationError.unresolvedPermissions
         }
         
         return false

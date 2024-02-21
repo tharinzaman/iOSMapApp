@@ -8,31 +8,31 @@
 import Foundation
 import MapKit
 
-enum MapConstants {
+struct MapConstants {
     
-    static let span = MKCoordinateSpan(
+    static let SPAN = MKCoordinateSpan(
         latitudeDelta: 0.01,
         longitudeDelta: 0.01
     )
-    static let defaultLocation = CLLocationCoordinate2D(
+    static let DEFAULT_LOCATION = CLLocationCoordinate2D(
         latitude: 0.0,
         longitude: 0.0
     )
     
-    static let lat = 0.0
-    static let long = 0.0
+    static let LAT = 0.0
+    static let LONG = 0.0
 }
 
-enum Strings {
+struct Strings {
     
-    static let Empty = ""
+    static let EMPTY = ""
     
-    static let Unknown = "Unknown"
+    static let UNKNOWN = "Unknown"
     static let OK = "OK"
     
-    static let Welcome = "WELCOME"
-    static let WhereTo = "WHERE TO?"
-    static let MyLocation = "MY LOCATION"
-    static let RandomLocation = "RANDOM LOCATION"
+    static let WELCOME = "WELCOME"
+    static let WHERE_TO = "WHERE TO?"
+    static let MY_LOCATION = "MY LOCATION"
+    static let RANDOM_LOCATION = "RANDOM LOCATION"
         
 }

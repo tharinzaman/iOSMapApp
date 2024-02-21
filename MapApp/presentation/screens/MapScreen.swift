@@ -16,12 +16,14 @@ struct MapScreen: View {
     init(
         locationHelper: UserLocationHelperProtocol,
         client: NetworkClientProtocol,
+        alertHelper: AlertHelper,
         destination: Destination
     ) {
         _vm = StateObject(
             wrappedValue: MapScreenViewModel(
                 locationHelper: locationHelper,
                 client: client,
+                alertHelper: alertHelper,
                 destination: destination
             )
         )
@@ -39,8 +41,12 @@ struct MapScreen: View {
                 Marker(
                     vm.randomLocation.name,
                     coordinate: CLLocationCoordinate2D(
-                        latitude: Double(vm.randomLocation.lat) ?? MapConstants.lat,
-                        longitude: Double(vm.randomLocation.long) ?? MapConstants.long
+                        latitude: Double(
+                            vm.randomLocation.lat
+                        ) ?? MapConstants.LAT,
+                        longitude: Double(
+                            vm.randomLocation.long
+                        ) ?? MapConstants.LONG
                     )
                 )
             }
@@ -57,11 +63,20 @@ struct MapScreen: View {
             }
         }
         // MARK: Comment/Uncomment the following code if you want/don't want to use combine
-//        .task {
-//            if destination == .RandomLocation {
-//                await vm.getRandomLocation()
-//            }
-//        }
+        .task {
+            if destination == .RandomLocation {
+                await vm.getRandomLocation()
+            }
+        }
+        .alert(
+            item: $vm.alert
+        ) { alert in
+            Alert(
+                title: alert.title,
+                message: alert.message,
+                dismissButton: alert.dismissButton
+            )
+        }
         
     }
 }

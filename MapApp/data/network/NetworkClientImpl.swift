@@ -20,9 +20,7 @@ final class NetworkClientImpl: NetworkClientProtocol {
         guard let url = URL(
             string: baseURL + randomUKLandEndpoint
         ) else {
-            throw URLError(
-                .badURL
-            )
+            throw NetworkError.invalidURL
         }
         
         let (
@@ -35,9 +33,7 @@ final class NetworkClientImpl: NetworkClientProtocol {
         guard (
             response as? HTTPURLResponse
         )?.statusCode == 200 else {
-            throw URLError(
-                .badServerResponse
-            )
+            throw NetworkError.invalidResponse
         }
         
         do {
@@ -46,8 +42,7 @@ final class NetworkClientImpl: NetworkClientProtocol {
                 from: data
             ).location
         } catch {
-            // TODO: Change this to a custom error
-            throw URLError(.badServerResponse)
+            throw NetworkError.invalidData
         }
     }
     
@@ -56,9 +51,7 @@ final class NetworkClientImpl: NetworkClientProtocol {
         guard let url = URL(
             string: baseURL + randomUKLandEndpoint
         ) else {
-            throw URLError(
-                .badURL
-            )
+            throw NetworkError.invalidURL
         }
         
         return URLSession
