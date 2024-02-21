@@ -34,7 +34,7 @@ final class WelcomeScreenViewModel: ObservableObject {
         do {
             try locationHelper.checkIfLocationPermissionsAreGranted()
         } catch {
-            self.alert = alertHelper.errorToUserLocationAlert(error: error)
+            self.alert = alertHelper.errorToUserLocationErrorAlert(error: error)
         }
     }
     

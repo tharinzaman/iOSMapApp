@@ -63,7 +63,7 @@ final class MapScreenViewModel: ObservableObject {
                 }
             }
         } catch {
-            self.alert = alertHelper.errorToUserLocationAlert(error: error)
+            self.alert = alertHelper.errorToUserLocationErrorAlert(error: error)
         }
     }
     
@@ -94,7 +94,7 @@ extension MapScreenViewModel {
             )
             self.randomLocation = randomLocation
         } catch {
-            self.alert = alertHelper.errorToNetworkError(error: error)
+            self.alert = alertHelper.errorToNetworkErrorAlert(error: error)
         }
     }
     
@@ -107,7 +107,7 @@ extension MapScreenViewModel {
                         return
                     case .failure(let error):
                         self.randomLocation.name = Strings.UNKNOWN
-                        self.alert = self.alertHelper.errorToNetworkError(error: error)
+                        self.alert = self.alertHelper.errorToNetworkErrorAlert(error: error)
                     }
                 } receiveValue: { [weak self] randomLocation in
                     self?.position = MapCameraPosition.region(
@@ -129,7 +129,7 @@ extension MapScreenViewModel {
                     in: &cancellables
                 )
         } catch {
-            self.alert = alertHelper.errorToNetworkError(error: error)
+            self.alert = alertHelper.errorToNetworkErrorAlert(error: error)
         }
     }
 }

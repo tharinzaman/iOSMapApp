@@ -9,7 +9,7 @@ import Foundation
 
 class AlertHelperImpl: AlertHelper {
     
-    func errorToUserLocationAlert(
+    func errorToUserLocationErrorAlert(
         error: Error
     ) -> AlertModel {
         if let permissionError = error as? UserLocationError {
@@ -24,7 +24,7 @@ class AlertHelperImpl: AlertHelper {
         }
     }
     
-    func errorToNetworkError(
+    func errorToNetworkErrorAlert(
         error: Error
     ) -> AlertModel {
         if let networkError = error as? NetworkError {

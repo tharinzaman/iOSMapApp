@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AlertModel: Identifiable{
+struct AlertModel: Identifiable {
     
     init(
         title: String,

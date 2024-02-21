@@ -9,11 +9,11 @@ import Foundation
 
 protocol AlertHelper {
     
-    func errorToUserLocationAlert(
+    func errorToUserLocationErrorAlert(
         error: Error
     ) -> AlertModel
     
-    func errorToNetworkError(
+    func errorToNetworkErrorAlert(
         error: Error
     ) -> AlertModel
     
