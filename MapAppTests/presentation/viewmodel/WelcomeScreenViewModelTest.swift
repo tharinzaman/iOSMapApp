@@ -1,14 +1,13 @@
 //
-//  MapAppTests.swift
+//  WelcomeScreenViewModelTest.swift
 //  MapAppTests
 //
-//  Created by Tharin Zaman on 19/02/2024.
+//  Created by Tharin Zaman on 21/02/2024.
 //
 
 import XCTest
-@testable import MapApp
 
-final class MapAppTests: XCTestCase {
+final class WelcomeScreenViewModelTest: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

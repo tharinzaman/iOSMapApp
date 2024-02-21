@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AlertModel {
+struct AlertModel: Identifiable{
     
     init(
         title: String,
@@ -21,6 +21,7 @@ struct AlertModel {
         )
     }
     
+    let id = UUID()
     let title: Text
     let message: Text
     let dismissButton = Alert.Button.default(
@@ -72,19 +73,6 @@ struct AlertItem {
         message: AlertStrings.UNABLE_TO_COMPLETE_MESSAGE
     )
     
-    static func errorToUserLocationAlert(error: Error) -> AlertModel {
-        if let permissionError = error as? UserLocationError {
-            return switch permissionError {
-            case .deniedPermissions: AlertItem.deniedPermissions
-            case .restrictedPermissions: AlertItem.restrictedPermissions
-            case .unresolvedPermissions: AlertItem.unresolvedPermissions
-            case .locationServicesDisabled: AlertItem.locationServicesDisabled
-            }
-        } else {
-            return AlertItem.unableToComplete
-        }
-    }
-    
 }
 
 struct AlertStrings {
@@ -108,5 +96,34 @@ struct AlertStrings {
     
     static let UNABLE_TO_COMPLETE_TITLE = "Unable to complete."
     static let UNABLE_TO_COMPLETE_MESSAGE = "Please try again later"
+    
+    static func errorToUserLocationAlert(
+        error: Error
+    ) -> AlertModel {
+        if let permissionError = error as? UserLocationError {
+            return switch permissionError {
+            case .deniedPermissions: AlertItem.deniedPermissions
+            case .restrictedPermissions: AlertItem.restrictedPermissions
+            case .unresolvedPermissions: AlertItem.unresolvedPermissions
+            case .locationServicesDisabled: AlertItem.locationServicesDisabled
+            }
+        } else {
+            return AlertItem.unableToComplete
+        }
+    }
+    
+    static func errorToNetworkError(
+        error: Error
+    ) -> AlertModel {
+        if let networkError = error as? NetworkError {
+            return switch networkError {
+            case .invalidData: AlertItem.invalidData
+            case .invalidURL: AlertItem.invalidURL
+            case .invalidResponse: AlertItem.invalidResponse
+            }
+        } else {
+            return AlertItem.unableToComplete
+        }
+    }
     
 }
