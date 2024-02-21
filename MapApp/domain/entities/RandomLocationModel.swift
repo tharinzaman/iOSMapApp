@@ -18,7 +18,7 @@ struct RandomLocationModel: Decodable {
 struct RandomLocation: Decodable {
     let lat: String
     let long: String
-    var name: String
+    var name: String // This is a var instead of let as we want to change it in case Combine fails
     
     enum CodingKeys: String, CodingKey {
         case lat = "latt"

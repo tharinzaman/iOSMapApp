@@ -40,7 +40,7 @@ extension UserLocationHelperImpl: UserLocationHelperProtocol {
             locationManager?.desiredAccuracy = kCLLocationAccuracyBest
             locationManager?.delegate = self
         } else {
-            //TODO: Show an alert saying that location services are disabled and to allow in settings
+            // TODO: Show an alert saying that location services are disabled and to allow in settings
         }
     }
     
