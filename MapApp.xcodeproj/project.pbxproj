@@ -22,6 +22,7 @@
 		E1069B4F2B86333D00D6AD04 /* StaticLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1069B4E2B86333D00D6AD04 /* StaticLoader.swift */; };
 		E1069B542B86352800D6AD04 /* MockNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1069B532B86352800D6AD04 /* MockNetworkClient.swift */; };
 		E1069B562B863B8300D6AD04 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1069B552B863B8300D6AD04 /* MockURLSession.swift */; };
+		E1069B572B8644AC00D6AD04 /* MockNetworkResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = E1069B4A2B86322200D6AD04 /* MockNetworkResponse.json */; };
 		E12EBAEA2B8367BD00E0BBE2 /* MapAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBAE92B8367BD00E0BBE2 /* MapAppApp.swift */; };
 		E12EBAEC2B8367BD00E0BBE2 /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBAEB2B8367BD00E0BBE2 /* MapScreen.swift */; };
 		E12EBAEE2B8367C100E0BBE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E12EBAED2B8367C100E0BBE2 /* Assets.xcassets */; };
@@ -425,6 +426,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1069B572B8644AC00D6AD04 /* MockNetworkResponse.json in Resources */,
 				E12EBAF12B8367C100E0BBE2 /* Preview Assets.xcassets in Resources */,
 				E12EBAEE2B8367C100E0BBE2 /* Assets.xcassets in Resources */,
 			);

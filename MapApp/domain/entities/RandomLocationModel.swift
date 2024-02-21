@@ -15,7 +15,7 @@ struct RandomLocationModel: Decodable {
     }
 }
 
-struct RandomLocation: Decodable {
+struct RandomLocation: Decodable, Equatable {
     let lat: String
     let long: String
     var name: String // This is a var instead of let as we want to change it in case Combine fails
