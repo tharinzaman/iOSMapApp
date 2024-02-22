@@ -10,34 +10,42 @@ import Foundation
 
 class MockAlertHelperSuccess: AlertHelper {
     
-    private(set) var errorToUserLocationErrorAlert = false
-    private(set) var errorToNetworkErrorAlert = false
+    private(set) var errorToUserLocationErrorAlertCalled = false
+    private(set) var errorToNetworkErrorAlertCalled = false
 
     func errorToUserLocationErrorAlert(error: Error) -> AlertModel {
-        errorToUserLocationErrorAlert = true
-        return AlertItem.deniedPermissions
+        errorToUserLocationErrorAlertCalled = true
+        if let error = error as? UserLocationError {
+            return AlertItem.deniedPermissions
+        } else {
+            return AlertItem.unableToComplete
+        }
     }
     
     func errorToNetworkErrorAlert(error: Error) -> AlertModel {
-        errorToNetworkErrorAlert = true
-        return AlertItem.invalidURL
+        errorToNetworkErrorAlertCalled = true
+        if let error = error as? NetworkError {
+            return AlertItem.invalidURL
+        } else {
+            return AlertItem.deniedPermissions
+        }
     }
     
 }
 
 class MockAlertHelperFailure: AlertHelper {
     
-    private(set) var errorToUserLocationErrorAlert = false
-    private(set) var errorToNetworkErrorAlert = false
+    private(set) var errorToUserLocationErrorAlertCalled = false
+    private(set) var errorToNetworkErrorAlertCalled = false
 
     func errorToUserLocationErrorAlert(error: Error) -> AlertModel {
-        errorToUserLocationErrorAlert = true
-        return AlertItem.invalidURL
+        errorToUserLocationErrorAlertCalled = true
+        return AlertItem.unableToComplete
     }
     
     func errorToNetworkErrorAlert(error: Error) -> AlertModel {
-        errorToNetworkErrorAlert = true
-        return AlertItem.deniedPermissions
+        errorToNetworkErrorAlertCalled = true
+        return AlertItem.unableToComplete
     }
     
 }

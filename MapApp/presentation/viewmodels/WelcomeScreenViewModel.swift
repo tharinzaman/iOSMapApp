@@ -32,7 +32,10 @@ final class WelcomeScreenViewModel: ObservableObject {
     
     func checkLocationPermissions() {
         do {
-            try locationHelper.checkIfLocationPermissionsAreGranted()
+            let permissionStatus = try locationHelper.checkIfLocationPermissionsAreGranted()
+            if permissionStatus == false {
+                self.alert = AlertItem.unableToComplete
+            }
         } catch {
             self.alert = alertHelper.errorToUserLocationErrorAlert(error: error)
         }
