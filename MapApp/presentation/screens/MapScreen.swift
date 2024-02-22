@@ -14,7 +14,7 @@ struct MapScreen: View {
     @State private var destination: Destination
     
     init(
-        locationHelper: UserLocationHelperProtocol,
+        locationHelper: UserLocationHelper,
         client: NetworkClientProtocol,
         alertHelper: AlertHelper,
         destination: Destination

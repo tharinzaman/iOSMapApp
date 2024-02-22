@@ -14,14 +14,14 @@ import MapKit
 
 struct WelcomeScreen: View {
     
-    private let locationHelper: UserLocationHelperProtocol
+    private let locationHelper: UserLocationHelper
     private let client: NetworkClientProtocol
     private let alertHelper: AlertHelper
     
     @StateObject var vm: WelcomeScreenViewModel
     
     init(
-        locationHelper: UserLocationHelperProtocol,
+        locationHelper: UserLocationHelper,
         alertHelper: AlertHelper,
         client: NetworkClientProtocol
     ) {
@@ -128,7 +128,7 @@ struct NavigateButton: View {
     
     let destination: Destination
     let client: NetworkClientProtocol
-    let locationHelper: UserLocationHelperProtocol
+    let locationHelper: UserLocationHelper
     let alertHelper: AlertHelper
     
     var destinationString: String {

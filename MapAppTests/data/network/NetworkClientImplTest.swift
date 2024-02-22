@@ -31,7 +31,7 @@ final class NetworkClientImplTest: XCTestCase {
         jsonUrl = nil
     }
     
-    func test_makeANetworkRequest_successfulResponse() async throws {
+    func test_makeANetworkRequest_success() async throws {
         // ASSIGN
         let data = StaticLoader.loadJSONFromFileReturnData(
             file: "MockNetworkResponse"
@@ -62,7 +62,7 @@ final class NetworkClientImplTest: XCTestCase {
         )
     }
     
-    func test_makeANetworkRequest_invalidUrl() async throws {
+    func test_makeANetworkRequest_failure_invalidUrl() async throws {
         let data = StaticLoader.loadJSONFromFileReturnData(
             file: "MockNetworkResponse"
         )
@@ -93,7 +93,7 @@ final class NetworkClientImplTest: XCTestCase {
         }
     }
     
-    func test_makeANetworkRequest_invalidResponse() async throws {
+    func test_makeANetworkRequest_failure_invalidResponse() async throws {
         // ASSIGN
         let invalidStatusCode = 400
         MockURLSession.loadingHandler = {
@@ -128,7 +128,7 @@ final class NetworkClientImplTest: XCTestCase {
         }
     }
     
-    func test_makeANetworkRequest_invalidData() async throws {
+    func test_makeANetworkRequest_failure_invalidData() async throws {
         // ASSIGN
         MockURLSession.loadingHandler = {
             let response = HTTPURLResponse(

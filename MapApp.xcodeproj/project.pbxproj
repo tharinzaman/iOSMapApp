@@ -30,10 +30,12 @@
 		E12EBB192B836CF300E0BBE2 /* WelcomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBB182B836CF300E0BBE2 /* WelcomeScreenViewModel.swift */; };
 		E12EBB1C2B8375A100E0BBE2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBB1B2B8375A000E0BBE2 /* Constants.swift */; };
 		E12EBB1F2B83836300E0BBE2 /* UserLocationHelperImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBB1E2B83836300E0BBE2 /* UserLocationHelperImpl.swift */; };
-		E12EBB222B83838500E0BBE2 /* UserLocationHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBB212B83838500E0BBE2 /* UserLocationHelperProtocol.swift */; };
+		E12EBB222B83838500E0BBE2 /* UserLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBB212B83838500E0BBE2 /* UserLocationHelper.swift */; };
 		E12EBB252B83909D00E0BBE2 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBB242B83909D00E0BBE2 /* WelcomeScreen.swift */; };
 		E12EBB292B839A4500E0BBE2 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBB282B839A4500E0BBE2 /* Destination.swift */; };
 		E12EBB2B2B83AA9600E0BBE2 /* MapScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBB2A2B83AA9600E0BBE2 /* MapScreenViewModel.swift */; };
+		E192615A2B87670C006BF57B /* MockUserLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19261592B87670C006BF57B /* MockUserLocationHelper.swift */; };
+		E192615C2B876D94006BF57B /* MockAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E192615B2B876D94006BF57B /* MockAlertHelper.swift */; };
 		E1D259D02B84F1D8006EB6BC /* RandomLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D259CF2B84F1D7006EB6BC /* RandomLocationModel.swift */; };
 		E1D259D22B84F1EE006EB6BC /* NetworkClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D259D12B84F1EE006EB6BC /* NetworkClientProtocol.swift */; };
 		E1D259D42B84F1FE006EB6BC /* NetworkClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D259D32B84F1FE006EB6BC /* NetworkClientImpl.swift */; };
@@ -52,7 +54,6 @@
 /* Begin PBXFileReference section */
 		E1069B1F2B86138400D6AD04 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		E1069B212B8616D800D6AD04 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
-		E1069B272B862AB600D6AD04 /* MapAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MapAppTests.xctest; path = "/Users/tharin/iOS Projects/SwiftUI/MapApp/MapApp/build/Debug-iphoneos/MapAppTests.xctest"; sourceTree = "<absolute>"; };
 		E1069B282B862AB600D6AD04 /* WelcomeScreenViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewModelTest.swift; sourceTree = "<group>"; };
 		E1069B2A2B862AD700D6AD04 /* MapScreenViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenViewModelTest.swift; sourceTree = "<group>"; };
 		E1069B2D2B862B7D00D6AD04 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
@@ -66,7 +67,6 @@
 		E1069B4E2B86333D00D6AD04 /* StaticLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticLoader.swift; sourceTree = "<group>"; };
 		E1069B532B86352800D6AD04 /* MockNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkClient.swift; sourceTree = "<group>"; };
 		E1069B552B863B8300D6AD04 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
-		E12EBAE62B8367BD00E0BBE2 /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MapApp.app; path = "/Users/tharin/iOS Projects/SwiftUI/MapApp/MapApp/build/Debug-iphoneos/MapApp.app"; sourceTree = "<absolute>"; };
 		E12EBAE92B8367BD00E0BBE2 /* MapAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAppApp.swift; sourceTree = "<group>"; };
 		E12EBAEB2B8367BD00E0BBE2 /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		E12EBAED2B8367C100E0BBE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,10 +74,14 @@
 		E12EBB182B836CF300E0BBE2 /* WelcomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewModel.swift; sourceTree = "<group>"; };
 		E12EBB1B2B8375A000E0BBE2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E12EBB1E2B83836300E0BBE2 /* UserLocationHelperImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationHelperImpl.swift; sourceTree = "<group>"; };
-		E12EBB212B83838500E0BBE2 /* UserLocationHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationHelperProtocol.swift; sourceTree = "<group>"; };
+		E12EBB212B83838500E0BBE2 /* UserLocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationHelper.swift; sourceTree = "<group>"; };
 		E12EBB242B83909D00E0BBE2 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		E12EBB282B839A4500E0BBE2 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		E12EBB2A2B83AA9600E0BBE2 /* MapScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenViewModel.swift; sourceTree = "<group>"; };
+		E19261572B87634B006BF57B /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MapApp.app; path = "/Users/tharin/iOS Projects/SwiftUI/MapApp/MapApp/build/Debug-iphoneos/MapApp.app"; sourceTree = "<absolute>"; };
+		E19261582B87634B006BF57B /* MapAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MapAppTests.xctest; path = "/Users/tharin/iOS Projects/SwiftUI/MapApp/MapApp/build/Debug-iphoneos/MapAppTests.xctest"; sourceTree = "<absolute>"; };
+		E19261592B87670C006BF57B /* MockUserLocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserLocationHelper.swift; sourceTree = "<group>"; };
+		E192615B2B876D94006BF57B /* MockAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAlertHelper.swift; sourceTree = "<group>"; };
 		E1D259CF2B84F1D7006EB6BC /* RandomLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomLocationModel.swift; sourceTree = "<group>"; };
 		E1D259D12B84F1EE006EB6BC /* NetworkClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientProtocol.swift; sourceTree = "<group>"; };
 		E1D259D32B84F1FE006EB6BC /* NetworkClientImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientImpl.swift; sourceTree = "<group>"; };
@@ -195,21 +199,23 @@
 			path = user_location;
 			sourceTree = "<group>";
 		};
-		E1069B442B8630A700D6AD04 /* Testing */ = {
+		E1069B442B8630A700D6AD04 /* TestingUtils */ = {
 			isa = PBXGroup;
 			children = (
 				E1069B4E2B86333D00D6AD04 /* StaticLoader.swift */,
 				E1069B462B8630D300D6AD04 /* files */,
 				E1069B452B8630C900D6AD04 /* mocks */,
 			);
-			path = Testing;
+			path = TestingUtils;
 			sourceTree = "<group>";
 		};
 		E1069B452B8630C900D6AD04 /* mocks */ = {
 			isa = PBXGroup;
 			children = (
+				E192615B2B876D94006BF57B /* MockAlertHelper.swift */,
 				E1069B532B86352800D6AD04 /* MockNetworkClient.swift */,
 				E1069B552B863B8300D6AD04 /* MockURLSession.swift */,
+				E19261592B87670C006BF57B /* MockUserLocationHelper.swift */,
 			);
 			path = mocks;
 			sourceTree = "<group>";
@@ -227,7 +233,7 @@
 			children = (
 				E12EBAE82B8367BD00E0BBE2 /* MapApp */,
 				E12EBAF92B8367C100E0BBE2 /* MapAppTests */,
-				E1069B442B8630A700D6AD04 /* Testing */,
+				E1069B442B8630A700D6AD04 /* TestingUtils */,
 			);
 			sourceTree = "<group>";
 		};
@@ -331,7 +337,7 @@
 		E12EBB202B83837200E0BBE2 /* user_location */ = {
 			isa = PBXGroup;
 			children = (
-				E12EBB212B83838500E0BBE2 /* UserLocationHelperProtocol.swift */,
+				E12EBB212B83838500E0BBE2 /* UserLocationHelper.swift */,
 			);
 			path = user_location;
 			sourceTree = "<group>";
@@ -361,7 +367,7 @@
 			);
 			name = MapApp;
 			productName = MapApp;
-			productReference = E12EBAE62B8367BD00E0BBE2 /* MapApp.app */;
+			productReference = E19261572B87634B006BF57B /* MapApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E12EBAF52B8367C100E0BBE2 /* MapAppTests */ = {
@@ -379,7 +385,7 @@
 			);
 			name = MapAppTests;
 			productName = MapAppTests;
-			productReference = E1069B272B862AB600D6AD04 /* MapAppTests.xctest */;
+			productReference = E19261582B87634B006BF57B /* MapAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -447,7 +453,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E12EBB222B83838500E0BBE2 /* UserLocationHelperProtocol.swift in Sources */,
+				E12EBB222B83838500E0BBE2 /* UserLocationHelper.swift in Sources */,
 				E1D259D42B84F1FE006EB6BC /* NetworkClientImpl.swift in Sources */,
 				E12EBAEC2B8367BD00E0BBE2 /* MapScreen.swift in Sources */,
 				E12EBAEA2B8367BD00E0BBE2 /* MapAppApp.swift in Sources */,
@@ -472,11 +478,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E192615C2B876D94006BF57B /* MockAlertHelper.swift in Sources */,
 				E1069B562B863B8300D6AD04 /* MockURLSession.swift in Sources */,
 				E1069B292B862AB600D6AD04 /* WelcomeScreenViewModelTest.swift in Sources */,
 				E1069B3E2B862F5A00D6AD04 /* NetworkClientImplTest.swift in Sources */,
 				E1069B4F2B86333D00D6AD04 /* StaticLoader.swift in Sources */,
 				E1069B402B862F7500D6AD04 /* UserLocationHelperImplTest.swift in Sources */,
+				E192615A2B87670C006BF57B /* MockUserLocationHelper.swift in Sources */,
 				E1069B3C2B862F3B00D6AD04 /* AlertHelperImplTest.swift in Sources */,
 				E1069B542B86352800D6AD04 /* MockNetworkClient.swift in Sources */,
 				E1069B2B2B862AD700D6AD04 /* MapScreenViewModelTest.swift in Sources */,

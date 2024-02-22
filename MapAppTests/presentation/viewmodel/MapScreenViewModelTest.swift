@@ -9,4 +9,5 @@ import XCTest
 
 final class MapScreenViewModelTest: XCTestCase {
 
+    
 }

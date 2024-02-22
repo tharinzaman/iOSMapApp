@@ -9,13 +9,13 @@ import MapKit
 
 final class WelcomeScreenViewModel: ObservableObject {
     
-    private let locationHelper: UserLocationHelperProtocol
+    private let locationHelper: UserLocationHelper
     private let alertHelper: AlertHelper
     
     @Published var alert: AlertModel? = nil
     
     init(
-        locationHelper: UserLocationHelperProtocol,
+        locationHelper: UserLocationHelper,
         alertHelper: AlertHelper
     ) {
         self.locationHelper = locationHelper

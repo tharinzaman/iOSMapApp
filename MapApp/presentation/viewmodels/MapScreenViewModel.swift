@@ -12,14 +12,14 @@ import Combine
 
 final class MapScreenViewModel: ObservableObject {
     
-    private let locationHelper: UserLocationHelperProtocol
+    private let locationHelper: UserLocationHelper
     private let client: NetworkClientProtocol
     private let alertHelper: AlertHelper
     
     private var cancellables = Set<AnyCancellable>()
     
     init(
-        locationHelper: UserLocationHelperProtocol,
+        locationHelper: UserLocationHelper,
         client: NetworkClientProtocol,
         alertHelper: AlertHelper,
         destination: Destination
