@@ -11,7 +11,12 @@ import Combine
 
 class MockNetworkClientSuccess: NetworkClientProtocol {
     
-    private(set) var fetchCalled = false
+    private(
+        set
+    ) var fetchCalled = false
+    private(
+        set
+    ) var fetchWithCombineCalled = false
     
     func fetch(
         session: URLSession
@@ -26,12 +31,13 @@ class MockNetworkClientSuccess: NetworkClientProtocol {
         MapApp.RandomLocationModel,
         Error
     > {
+        fetchWithCombineCalled = true
         return Just(
             RandomLocationModel(
                 location: RandomLocation(
-                    lat: "0.0",
-                    long: "0.0",
-                    name: ""
+                    lat: "52.0",
+                    long: "4.0",
+                    name: "Bristol"
                 )
             )
         ).setFailureType(
@@ -43,7 +49,12 @@ class MockNetworkClientSuccess: NetworkClientProtocol {
 
 class MockNetworkClientThrowInvalidURL: NetworkClientProtocol {
     
-    private(set) var fetchCalled = false
+    private(
+        set
+    ) var fetchCalled = false
+    private(
+        set
+    ) var fetchWithCombineCalled = false
     
     func fetch(
         session: URLSession
@@ -56,6 +67,7 @@ class MockNetworkClientThrowInvalidURL: NetworkClientProtocol {
         MapApp.RandomLocationModel,
         Error
     > {
+        fetchWithCombineCalled = true
         throw NetworkError.invalidURL
     }
     
@@ -63,7 +75,12 @@ class MockNetworkClientThrowInvalidURL: NetworkClientProtocol {
 
 class MockNetworkClientThrowInvalidResponse: NetworkClientProtocol {
     
-    private(set) var fetchCalled = false
+    private(
+        set
+    ) var fetchCalled = false
+    private(
+        set
+    ) var fetchWithCombineCalled = false
     
     func fetch(
         session: URLSession
@@ -76,6 +93,7 @@ class MockNetworkClientThrowInvalidResponse: NetworkClientProtocol {
         MapApp.RandomLocationModel,
         Error
     > {
+        fetchWithCombineCalled = true
         return Fail(
             error: NetworkError.invalidResponse
         ).eraseToAnyPublisher()
@@ -85,7 +103,12 @@ class MockNetworkClientThrowInvalidResponse: NetworkClientProtocol {
 
 class MockNetworkClientThrowInvalidData: NetworkClientProtocol {
     
-    private(set) var fetchCalled = false
+    private(
+        set
+    ) var fetchCalled = false
+    private(
+        set
+    ) var fetchWithCombineCalled = false
     
     func fetch(
         session: URLSession
@@ -98,8 +121,37 @@ class MockNetworkClientThrowInvalidData: NetworkClientProtocol {
         MapApp.RandomLocationModel,
         Error
     > {
+        fetchWithCombineCalled = true
         return Fail(
             error: NetworkError.invalidData
+        ).eraseToAnyPublisher()
+    }
+    
+}
+
+class MockNetworkClientThrowNonNetworkError: NetworkClientProtocol {
+    
+    private(
+        set
+    ) var fetchCalled = false
+    private(
+        set
+    ) var fetchWithCombineCalled = false
+    
+    func fetch(
+        session: URLSession
+    ) throws -> RandomLocation {
+        fetchCalled = true
+        throw UserLocationError.deniedPermissions
+    }
+    
+    func fetchWithCombine() throws -> AnyPublisher<
+        MapApp.RandomLocationModel,
+        Error
+    > {
+        fetchWithCombineCalled = true
+        return Fail(
+            error: UserLocationError.deniedPermissions
         ).eraseToAnyPublisher()
     }
     

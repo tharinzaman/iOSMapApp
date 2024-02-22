@@ -15,7 +15,7 @@ class MockAlertHelperSuccess: AlertHelper {
 
     func errorToUserLocationErrorAlert(error: Error) -> AlertModel {
         errorToUserLocationErrorAlertCalled = true
-        if let error = error as? UserLocationError {
+        if error is UserLocationError {
             return AlertItem.deniedPermissions
         } else {
             return AlertItem.unableToComplete
@@ -24,10 +24,10 @@ class MockAlertHelperSuccess: AlertHelper {
     
     func errorToNetworkErrorAlert(error: Error) -> AlertModel {
         errorToNetworkErrorAlertCalled = true
-        if let error = error as? NetworkError {
+        if error is NetworkError {
             return AlertItem.invalidURL
         } else {
-            return AlertItem.deniedPermissions
+            return AlertItem.unableToComplete
         }
     }
     

@@ -54,16 +54,12 @@ final class MapScreenViewModel: ObservableObject {
     @Published var alert: AlertModel? = nil
     
     func getUserLocation() {
-        do {
-            if try locationHelper.checkIfLocationPermissionsAreGranted() {
-                if let userLocation = locationHelper.getUserLocation() {
-                    self.position = MapCameraPosition.region(
-                        userLocation
-                    )
-                }
-            }
-        } catch {
-            self.alert = alertHelper.errorToUserLocationErrorAlert(error: error)
+        if let userLocation = locationHelper.getUserLocation() {
+            self.position = MapCameraPosition.region(
+                userLocation
+            )
+        } else {
+            self.alert = AlertItem.unableToComplete
         }
     }
     
@@ -94,7 +90,9 @@ extension MapScreenViewModel {
             )
             self.randomLocation = randomLocation
         } catch {
-            self.alert = alertHelper.errorToNetworkErrorAlert(error: error)
+            self.alert = alertHelper.errorToNetworkErrorAlert(
+                error: error
+            )
         }
     }
     
@@ -105,9 +103,13 @@ extension MapScreenViewModel {
                     switch completion {
                     case .finished:
                         return
-                    case .failure(let error):
+                    case .failure(
+                        let error
+                    ):
                         self.randomLocation.name = Strings.UNKNOWN
-                        self.alert = self.alertHelper.errorToNetworkErrorAlert(error: error)
+                        self.alert = self.alertHelper.errorToNetworkErrorAlert(
+                            error: error
+                        )
                     }
                 } receiveValue: { [weak self] randomLocation in
                     self?.position = MapCameraPosition.region(
@@ -129,7 +131,9 @@ extension MapScreenViewModel {
                     in: &cancellables
                 )
         } catch {
-            self.alert = alertHelper.errorToNetworkErrorAlert(error: error)
+            self.alert = alertHelper.errorToNetworkErrorAlert(
+                error: error
+            )
         }
     }
 }

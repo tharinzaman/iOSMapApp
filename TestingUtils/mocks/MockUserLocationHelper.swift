@@ -27,7 +27,10 @@ class MockUserLocationHelperSuccess: UserLocationHelper {
     func getUserLocation() -> MKCoordinateRegion? {
         getUserLocationCalled = true
         return MKCoordinateRegion(
-            center: MapConstants.DEFAULT_LOCATION,
+            center: CLLocationCoordinate2D(
+                latitude: 52.0,
+                longitude: 4.0
+            ),
             span: MapConstants.SPAN
         )
     }
