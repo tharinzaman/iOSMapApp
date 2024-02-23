@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-class UserLocationHelperImpl: NSObject, CLLocationManagerDelegate {
+class UserLocationHelperImpl: NSObject {
     
     var locationManager: CLLocationManager?
     
@@ -31,6 +31,12 @@ class UserLocationHelperImpl: NSObject, CLLocationManagerDelegate {
             return nil
         }
         
+        do {
+            try checkIfLocationServicesAreEnabled()
+        } catch {
+            return nil
+        }
+        
         return MKCoordinateRegion(
             center: locationManager.location?.coordinate ?? MapConstants.DEFAULT_LOCATION,
             span: MapConstants.SPAN
@@ -44,7 +50,6 @@ extension UserLocationHelperImpl: UserLocationHelper {
     func checkIfLocationServicesAreEnabled() throws {
         if CLLocationManager.locationServicesEnabled() {
             locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager?.delegate = self
         } else {
             throw UserLocationError.locationServicesDisabled
         }
@@ -62,7 +67,9 @@ extension UserLocationHelperImpl: UserLocationHelper {
             throw UserLocationError.restrictedPermissions
         case .denied:
             throw UserLocationError.deniedPermissions
-        case .authorizedAlways, .authorizedWhenInUse:
+        case .authorizedAlways:
+            return true
+        case .authorizedWhenInUse:
             return true
         @unknown default:
             throw UserLocationError.unresolvedPermissions
