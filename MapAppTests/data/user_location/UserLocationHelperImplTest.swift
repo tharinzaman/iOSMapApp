@@ -31,7 +31,7 @@ final class UserLocationHelperImplTest: XCTestCase {
     func test_getUserLocation_success() throws {
         // ASSIGN
         // ACT
-        let result = helper.getUserLocation()
+        let result = try helper.getUserLocation()
         // ASSERT
         XCTAssertEqual(
             result?.center.latitude,
@@ -39,11 +39,11 @@ final class UserLocationHelperImplTest: XCTestCase {
         )
     }
     
-    func test_getUserLocation_locationManagerNil() {
+    func test_getUserLocation_locationManagerNil() throws {
         // ASSIGN
         helper = UserLocationHelperImpl()
         // ACT
-        let result = helper.getUserLocation()
+        let result = try helper.getUserLocation()
         // ASSERT
         XCTAssertNil(
             result
@@ -56,9 +56,22 @@ final class UserLocationHelperImplTest: XCTestCase {
             locationManager: MockCLLocationManagerFailure()
         )
         // ACT
-        let result = helper.getUserLocation()
-        // ASSERT
-        XCTAssertNil(result)
+        do {
+            try helper.getUserLocation()
+        } catch {
+            guard let thrownError = error as? UserLocationError else {
+                XCTFail(
+                    "Wrong type of error"
+                )
+                return
+            }
+            // ASSERT
+            XCTAssertEqual(
+                thrownError,
+                UserLocationError.deniedPermissions
+            )
+        }
+        
     }
     
     func test_getUserLocation_servicesDisabled() {

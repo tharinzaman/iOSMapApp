@@ -87,7 +87,7 @@ final class WelcomeScreenViewModelTest: XCTestCase {
         // ASSERT
         XCTAssertEqual(
             vm.alert?.message,
-            AlertItem.unableToComplete.message
+            AlertItem.deniedPermissions.message
         )
         XCTAssertTrue(
             locationHelper.checkIfLocationPermissionsAreGrantedCalled

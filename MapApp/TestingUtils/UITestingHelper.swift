@@ -13,8 +13,8 @@ struct UITestingHelper {
         ProcessInfo.processInfo.arguments.contains("-ui-testing")
     }
     
-    static var permissionGranted: Bool {
-        ProcessInfo.processInfo.environment["-permission-granted"] == "1"
+    static var servicesEnabled: Bool {
+        ProcessInfo.processInfo.environment["-services-enabled"] == "1"
     }
     
     static var networkingSuccess: Bool {

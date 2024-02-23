@@ -16,7 +16,11 @@ class MockAlertHelperSuccess: AlertHelper {
     func errorToUserLocationErrorAlert(error: Error) -> AlertModel {
         errorToUserLocationErrorAlertCalled = true
         if error is UserLocationError {
-            return AlertItem.deniedPermissions
+            if error as! UserLocationError == UserLocationError.locationServicesDisabled {
+                return AlertItem.locationServicesDisabled
+            } else {
+                return AlertItem.deniedPermissions
+            }
         } else {
             return AlertItem.unableToComplete
         }

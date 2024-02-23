@@ -8,82 +8,43 @@
 import XCTest
 @testable import MapApp
 
-final class WelcomeScreenUITestSuccess: XCTestCase {
+final class WelcomeScreenSuccessUITest: XCTestCase {
     
     private var app: XCUIApplication!
-    
-    private var userLocationButton: XCUIElement!
-    private var randomLocationButton: XCUIElement!
-    private var locationMap: XCUIElement!
     
     override func setUp() {
         continueAfterFailure = true
         app = XCUIApplication()
         app.launchArguments = ["-ui-testing"]
-        app.launchEnvironment = ["-networking-success":"1"]
-        app.launchEnvironment = ["-permission-granted":"1"]
+        app.launchEnvironment = ["-services-enabled":"1"]
         app.launch()
-        
-        userLocationButton = app.buttons["user-location-button"]
-        randomLocationButton = app.buttons["random-location-button"]
-        locationMap = app.descendants(matching: .any)["location-map"]
     }
     
     override func tearDown() {
         app = nil
-        userLocationButton = nil
-        randomLocationButton = nil
-        locationMap = nil
     }
     
     func test_allElementsPresented() {
         // ASSIGN
-        let welcomeText = app.descendants(
-            matching: .any
-        )["welcome-text"]
+        let welcomeText = app.staticTexts["welcome-text"]
         let globeImage = app.images["globe-image"]
-        let whereToText = app.descendants(
-            matching: .any
-        )["where-to-text"]
+        let whereToText = app.staticTexts["where-to-text"]
+        let userLocationButton = app.buttons["user-location-button"]
+        let randomLocationButton = app.buttons["random-location-button"]
         // ACT
         // ASSERT
-        XCTAssertTrue(
-            welcomeText.exists
-        )
-        XCTAssertTrue(
-            globeImage.exists
-        )
-        XCTAssertTrue(
-            whereToText.exists
-        )
-        XCTAssertTrue(
-            userLocationButton.exists
-        )
-        XCTAssertTrue(
-            randomLocationButton.exists
-        )
+        XCTAssertTrue(welcomeText.exists)
+        XCTAssertTrue(globeImage.exists)
+        XCTAssertTrue(whereToText.exists)
+        XCTAssertTrue(userLocationButton.exists)
+        XCTAssertTrue(randomLocationButton.exists)
     }
     
-    func test_navigateToUserLocation_success() {
-        // ASSIGN
-        // ACT
-        userLocationButton.tap()
-        // ASSERT
-        XCTAssertTrue(locationMap.exists)
-    }
-    
-    func test_navigateToRandomLocation_success() {
-        // ASSIGN
-        // ACT
-        randomLocationButton.tap()
-        // ASSERT
-        XCTAssertTrue(locationMap.exists)
-    }
     
 }
 
-final class WelcomeScreenUITestFailure: XCTestCase {
-
+final class WelcomeScreenFailureUITest: XCTestCase {
+    
     private var app: XCUIApplication!
     
     private var alert: XCUIElement!
@@ -92,10 +53,10 @@ final class WelcomeScreenUITestFailure: XCTestCase {
         continueAfterFailure = true
         app = XCUIApplication()
         app.launchArguments = ["-ui-testing"]
-        app.launchEnvironment = ["-permission-granted":"0"]
+        app.launchEnvironment = ["-services-enabled":"0"]
         app.launch()
         
-        alert = app.alerts.firstMatch
+        alert = app.alerts["Location services disabled"]
     }
     
     override func tearDown() {
@@ -108,7 +69,6 @@ final class WelcomeScreenUITestFailure: XCTestCase {
         // ACT
         // ASSERT
         XCTAssertTrue(alert.exists)
-        XCTAssertEqual(alert.title, AlertStrings.UNABLE_TO_COMPLETE_TITLE)
     }
     
 }

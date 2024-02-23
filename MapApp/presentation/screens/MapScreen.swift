@@ -19,6 +19,29 @@ struct MapScreen: View {
         alertHelper: AlertHelper,
         destination: Destination
     ) {
+        self.destination = destination
+        /**
+         If we are in debug mode and performing a UI test, then we will pass a mocked locationHelper and mocked client. Depending on if the servicesEnabled and networkingSuccess arguments for the UI test are true or false,  we pass successful or failing mocks for locationHelper and client.
+         If we are in debug mode but NOT performing a UI test, then the locationHelper and client will be whatever was passed in the initializer.
+         If we are not in debug mode, then the locationHelper and client will also be whatever was passed in the initializer.
+         */
+#if DEBUG
+        let mockLocationHelper: UserLocationHelper = UITestingHelper.servicesEnabled ? MockUserLocationHelperSuccess() : MockUserLocationHelperFailure()
+        let mockClient: NetworkClientProtocol = UITestingHelper.networkingSuccess ? MockNetworkClientSuccess() : MockNetworkClientThrowInvalidURL()
+        _vm = StateObject(
+            wrappedValue: UITestingHelper.isUITest ? MapScreenViewModel(
+                locationHelper: mockLocationHelper,
+                client: mockClient,
+                alertHelper: alertHelper,
+                destination: destination
+            ) : MapScreenViewModel(
+                locationHelper: locationHelper,
+                client: client,
+                alertHelper: alertHelper,
+                destination: destination
+            )
+        )
+#else
         _vm = StateObject(
             wrappedValue: MapScreenViewModel(
                 locationHelper: locationHelper,
@@ -27,7 +50,7 @@ struct MapScreen: View {
                 destination: destination
             )
         )
-        self.destination = destination
+#endif
     }
     
     var body: some View {
@@ -77,6 +100,9 @@ struct MapScreen: View {
                 dismissButton: alert.dismissButton
             )
         }
+        .accessibilityIdentifier(
+            "location-map"
+        )
         
     }
 }

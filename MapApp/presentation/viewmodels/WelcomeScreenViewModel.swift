@@ -26,7 +26,7 @@ final class WelcomeScreenViewModel: ObservableObject {
         do {
             try locationHelper.checkIfLocationServicesAreEnabled()
         } catch {
-            self.alert = AlertItem.locationServicesDisabled
+            self.alert = alertHelper.errorToUserLocationErrorAlert(error: error)
         }
     }
     
@@ -34,7 +34,7 @@ final class WelcomeScreenViewModel: ObservableObject {
         do {
             let permissionStatus = try locationHelper.checkIfLocationPermissionsAreGranted()
             if permissionStatus == false {
-                self.alert = AlertItem.unableToComplete
+                self.alert = AlertItem.deniedPermissions
             }
         } catch {
             self.alert = alertHelper.errorToUserLocationErrorAlert(error: error)

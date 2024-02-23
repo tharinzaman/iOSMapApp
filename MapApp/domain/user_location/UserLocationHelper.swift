@@ -11,5 +11,5 @@ import MapKit
 protocol UserLocationHelper {
     func checkIfLocationServicesAreEnabled() throws
     func checkIfLocationPermissionsAreGranted() throws -> Bool
-    func getUserLocation() -> MKCoordinateRegion?
+    func getUserLocation() throws -> MKCoordinateRegion?
 }

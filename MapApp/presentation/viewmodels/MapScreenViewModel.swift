@@ -54,12 +54,16 @@ final class MapScreenViewModel: ObservableObject {
     @Published var alert: AlertModel? = nil
     
     func getUserLocation() {
-        if let userLocation = locationHelper.getUserLocation() {
-            self.position = MapCameraPosition.region(
-                userLocation
-            )
-        } else {
-            self.alert = AlertItem.unableToComplete
+        do {
+            if let userLocation = try locationHelper.getUserLocation() {
+                self.position = MapCameraPosition.region(
+                    userLocation
+                )
+            } else {
+                self.alert = AlertItem.unableToComplete
+            }
+        } catch {
+            self.alert = alertHelper.errorToUserLocationErrorAlert(error: error)
         }
     }
     

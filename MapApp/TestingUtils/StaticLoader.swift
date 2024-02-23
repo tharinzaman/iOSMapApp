@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import MapApp
 
 struct StaticLoader {
     

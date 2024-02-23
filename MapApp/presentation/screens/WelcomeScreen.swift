@@ -28,12 +28,27 @@ struct WelcomeScreen: View {
         self.locationHelper = locationHelper
         self.alertHelper = alertHelper
         self.client = client
+        /**
+         If we are in debug mode and we are performing a UI test, then the locationHelper will be a mock. If the servicesEnabled argument for the UI test is true, we pass a successful mock. If it is false, we pass a failing mock.
+         If we are in debug mode but we are NOT performing a UI test, then the locationHelper will be whatever was passed in the initializer.
+         If we are not in debug mode, then the locationHelper will also be whatever was passed in the initializer.
+         */
+#if DEBUG
+        let mockLocationHelper: UserLocationHelper = UITestingHelper.servicesEnabled ? MockUserLocationHelperSuccess() : MockUserLocationHelperFailure()
+        _vm = StateObject(
+            wrappedValue: WelcomeScreenViewModel(
+                locationHelper: UITestingHelper.isUITest ? mockLocationHelper : locationHelper,
+                alertHelper: alertHelper
+            )
+        )
+#else
         _vm = StateObject(
             wrappedValue: WelcomeScreenViewModel(
                 locationHelper: locationHelper,
                 alertHelper: alertHelper
             )
         )
+#endif
     }
     
     var body: some View {
@@ -46,14 +61,22 @@ struct WelcomeScreen: View {
                     alignment: .center,
                     spacing: 150
                 ) {
-                    WelcomeText()
+                    WelcomeText().accessibilityIdentifier(
+                        "welcome-text"
+                    )
                     Image(
                         "Globe"
                     )
                     .frame(
                         height: 100
                     )
+                    .accessibilityIdentifier(
+                        "globe-image"
+                    )
                     WhereToText()
+                        .accessibilityIdentifier(
+                            "where-to-text"
+                        )
                     VStack(
                         spacing: 40
                     ) {
@@ -62,20 +85,24 @@ struct WelcomeScreen: View {
                             client: client,
                             locationHelper: locationHelper,
                             alertHelper: alertHelper
+                        ).accessibilityIdentifier(
+                            "user-location-button"
                         )
                         NavigateButton(
                             destination: .RandomLocation,
                             client: client,
                             locationHelper: locationHelper,
                             alertHelper: alertHelper
+                        ).accessibilityIdentifier(
+                            "random-location-button"
                         )
                     }
                 }
             }
             .ignoresSafeArea()
             .onAppear {
-                vm.checkLocationServices()
                 vm.checkLocationPermissions()
+                vm.checkLocationServices()
             }
             .alert(
                 item: $vm.alert

@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-class UserLocationHelperImpl: NSObject {
+class UserLocationHelperImpl: NSObject, UserLocationHelper {
     
     var locationManager: CLLocationManager?
     
@@ -17,35 +17,6 @@ class UserLocationHelperImpl: NSObject {
     ) {
         self.locationManager = locationManager
     }
-    
-    func getUserLocation() -> MKCoordinateRegion? {
-        guard let locationManager else {
-            return nil
-        }
-        
-        do {
-            guard try checkIfLocationPermissionsAreGranted() == true else {
-                return nil
-            }
-        } catch {
-            return nil
-        }
-        
-        do {
-            try checkIfLocationServicesAreEnabled()
-        } catch {
-            return nil
-        }
-        
-        return MKCoordinateRegion(
-            center: locationManager.location?.coordinate ?? MapConstants.DEFAULT_LOCATION,
-            span: MapConstants.SPAN
-        )
-    }
-}
-
-// MARK: Extension for checking location services and permissions
-extension UserLocationHelperImpl: UserLocationHelper {
     
     func checkIfLocationServicesAreEnabled() throws {
         if CLLocationManager.locationServicesEnabled() {
@@ -76,5 +47,30 @@ extension UserLocationHelperImpl: UserLocationHelper {
         }
         
         return false
+    }
+    
+    func getUserLocation() throws -> MKCoordinateRegion? {
+        guard let locationManager else {
+            return nil
+        }
+        
+        do {
+            guard try checkIfLocationPermissionsAreGranted() == true else {
+                throw UserLocationError.deniedPermissions
+            }
+        } catch {
+            throw error
+        }
+        
+        do {
+            try checkIfLocationServicesAreEnabled()
+        } catch {
+            throw UserLocationError.locationServicesDisabled
+        }
+        
+        return MKCoordinateRegion(
+            center: locationManager.location?.coordinate ?? MapConstants.DEFAULT_LOCATION,
+            span: MapConstants.SPAN
+        )
     }
 }

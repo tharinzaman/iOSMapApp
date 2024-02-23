@@ -18,10 +18,6 @@
 		E1069B3C2B862F3B00D6AD04 /* AlertHelperImplTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1069B3B2B862F3B00D6AD04 /* AlertHelperImplTest.swift */; };
 		E1069B3E2B862F5A00D6AD04 /* NetworkClientImplTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1069B3D2B862F5A00D6AD04 /* NetworkClientImplTest.swift */; };
 		E1069B402B862F7500D6AD04 /* UserLocationHelperImplTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1069B3F2B862F7500D6AD04 /* UserLocationHelperImplTest.swift */; };
-		E1069B4B2B86322200D6AD04 /* MockNetworkResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = E1069B4A2B86322200D6AD04 /* MockNetworkResponse.json */; };
-		E1069B4F2B86333D00D6AD04 /* StaticLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1069B4E2B86333D00D6AD04 /* StaticLoader.swift */; };
-		E1069B542B86352800D6AD04 /* MockNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1069B532B86352800D6AD04 /* MockNetworkClient.swift */; };
-		E1069B562B863B8300D6AD04 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1069B552B863B8300D6AD04 /* MockURLSession.swift */; };
 		E1069B572B8644AC00D6AD04 /* MockNetworkResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = E1069B4A2B86322200D6AD04 /* MockNetworkResponse.json */; };
 		E12EBAEA2B8367BD00E0BBE2 /* MapAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBAE92B8367BD00E0BBE2 /* MapAppApp.swift */; };
 		E12EBAEC2B8367BD00E0BBE2 /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBAEB2B8367BD00E0BBE2 /* MapScreen.swift */; };
@@ -34,9 +30,15 @@
 		E12EBB252B83909D00E0BBE2 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBB242B83909D00E0BBE2 /* WelcomeScreen.swift */; };
 		E12EBB292B839A4500E0BBE2 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBB282B839A4500E0BBE2 /* Destination.swift */; };
 		E12EBB2B2B83AA9600E0BBE2 /* MapScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12EBB2A2B83AA9600E0BBE2 /* MapScreenViewModel.swift */; };
-		E192615A2B87670C006BF57B /* MockUserLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19261592B87670C006BF57B /* MockUserLocationHelper.swift */; };
-		E192615C2B876D94006BF57B /* MockAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E192615B2B876D94006BF57B /* MockAlertHelper.swift */; };
-		E192615E2B879532006BF57B /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E192615D2B879532006BF57B /* MockLocationManager.swift */; };
+		E183AFC62B888F3300149975 /* WelcomeScreenUITestSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183AFC52B888F3300149975 /* WelcomeScreenUITestSuccess.swift */; };
+		E183AFCA2B8893D400149975 /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183AFC92B8893D400149975 /* UITestingHelper.swift */; };
+		E183AFD22B889DC500149975 /* StaticLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1069B4E2B86333D00D6AD04 /* StaticLoader.swift */; };
+		E183AFD32B889DE200149975 /* MockAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E192615B2B876D94006BF57B /* MockAlertHelper.swift */; };
+		E183AFD42B889DE600149975 /* MockCLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E192615D2B879532006BF57B /* MockCLLocationManager.swift */; };
+		E183AFD52B889DE900149975 /* MockNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1069B532B86352800D6AD04 /* MockNetworkClient.swift */; };
+		E183AFD62B889DEE00149975 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1069B552B863B8300D6AD04 /* MockURLSession.swift */; };
+		E183AFD72B889DF200149975 /* MockUserLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19261592B87670C006BF57B /* MockUserLocationHelper.swift */; };
+		E183AFDC2B88DA1E00149975 /* MapScreenUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183AFDB2B88DA1E00149975 /* MapScreenUITest.swift */; };
 		E1D259D02B84F1D8006EB6BC /* RandomLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D259CF2B84F1D7006EB6BC /* RandomLocationModel.swift */; };
 		E1D259D22B84F1EE006EB6BC /* NetworkClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D259D12B84F1EE006EB6BC /* NetworkClientProtocol.swift */; };
 		E1D259D42B84F1FE006EB6BC /* NetworkClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D259D32B84F1FE006EB6BC /* NetworkClientImpl.swift */; };
@@ -44,6 +46,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		E12EBAF72B8367C100E0BBE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E12EBADE2B8367BD00E0BBE2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E12EBAE52B8367BD00E0BBE2;
+			remoteInfo = MapApp;
+		};
+		E183AFBE2B888EC400149975 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E12EBADE2B8367BD00E0BBE2 /* Project object */;
 			proxyType = 1;
@@ -68,8 +77,8 @@
 		E1069B4E2B86333D00D6AD04 /* StaticLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticLoader.swift; sourceTree = "<group>"; };
 		E1069B532B86352800D6AD04 /* MockNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkClient.swift; sourceTree = "<group>"; };
 		E1069B552B863B8300D6AD04 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
-		E10B79762B88082800CA5514 /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E10B79772B88082800CA5514 /* MapAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E10B79762B88082800CA5514 /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MapApp.app; path = "/Users/tharin/iOS Projects/SwiftUI/MapApp/MapApp/build/Debug-iphoneos/MapApp.app"; sourceTree = "<absolute>"; };
+		E10B79772B88082800CA5514 /* MapAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MapAppTests.xctest; path = "/Users/tharin/iOS Projects/SwiftUI/MapApp/MapApp/build/Debug-iphoneos/MapAppTests.xctest"; sourceTree = "<absolute>"; };
 		E12EBAE92B8367BD00E0BBE2 /* MapAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAppApp.swift; sourceTree = "<group>"; };
 		E12EBAEB2B8367BD00E0BBE2 /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		E12EBAED2B8367C100E0BBE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,9 +90,13 @@
 		E12EBB242B83909D00E0BBE2 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		E12EBB282B839A4500E0BBE2 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		E12EBB2A2B83AA9600E0BBE2 /* MapScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenViewModel.swift; sourceTree = "<group>"; };
+		E183AFB82B888EC400149975 /* MapAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MapAppUITests.xctest; path = "/Users/tharin/iOS Projects/SwiftUI/MapApp/MapApp/build/Debug-iphoneos/MapAppUITests.xctest"; sourceTree = "<absolute>"; };
+		E183AFC52B888F3300149975 /* WelcomeScreenUITestSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenUITestSuccess.swift; sourceTree = "<group>"; };
+		E183AFC92B8893D400149975 /* UITestingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingHelper.swift; sourceTree = "<group>"; };
+		E183AFDB2B88DA1E00149975 /* MapScreenUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenUITest.swift; sourceTree = "<group>"; };
 		E19261592B87670C006BF57B /* MockUserLocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserLocationHelper.swift; sourceTree = "<group>"; };
 		E192615B2B876D94006BF57B /* MockAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAlertHelper.swift; sourceTree = "<group>"; };
-		E192615D2B879532006BF57B /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
+		E192615D2B879532006BF57B /* MockCLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCLLocationManager.swift; sourceTree = "<group>"; };
 		E1D259CF2B84F1D7006EB6BC /* RandomLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomLocationModel.swift; sourceTree = "<group>"; };
 		E1D259D12B84F1EE006EB6BC /* NetworkClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientProtocol.swift; sourceTree = "<group>"; };
 		E1D259D32B84F1FE006EB6BC /* NetworkClientImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientImpl.swift; sourceTree = "<group>"; };
@@ -98,6 +111,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E12EBAF32B8367C100E0BBE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E183AFB52B888EC400149975 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -205,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				E1069B4E2B86333D00D6AD04 /* StaticLoader.swift */,
+				E183AFC92B8893D400149975 /* UITestingHelper.swift */,
 				E1069B462B8630D300D6AD04 /* files */,
 				E1069B452B8630C900D6AD04 /* mocks */,
 			);
@@ -215,7 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				E192615B2B876D94006BF57B /* MockAlertHelper.swift */,
-				E192615D2B879532006BF57B /* MockLocationManager.swift */,
+				E192615D2B879532006BF57B /* MockCLLocationManager.swift */,
 				E1069B532B86352800D6AD04 /* MockNetworkClient.swift */,
 				E1069B552B863B8300D6AD04 /* MockURLSession.swift */,
 				E19261592B87670C006BF57B /* MockUserLocationHelper.swift */,
@@ -236,9 +257,7 @@
 			children = (
 				E12EBAE82B8367BD00E0BBE2 /* MapApp */,
 				E12EBAF92B8367C100E0BBE2 /* MapAppTests */,
-				E1069B442B8630A700D6AD04 /* TestingUtils */,
-				E10B79762B88082800CA5514 /* MapApp.app */,
-				E10B79772B88082800CA5514 /* MapAppTests.xctest */,
+				E183AFB92B888EC400149975 /* MapAppUITests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -251,6 +270,7 @@
 				E12EBB142B83683000E0BBE2 /* domain */,
 				E12EBB152B83684200E0BBE2 /* presentation */,
 				E12EBAEF2B8367C100E0BBE2 /* Preview Content */,
+				E1069B442B8630A700D6AD04 /* TestingUtils */,
 			);
 			path = MapApp;
 			sourceTree = "<group>";
@@ -347,6 +367,15 @@
 			path = user_location;
 			sourceTree = "<group>";
 		};
+		E183AFB92B888EC400149975 /* MapAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E183AFDB2B88DA1E00149975 /* MapScreenUITest.swift */,
+				E183AFC52B888F3300149975 /* WelcomeScreenUITestSuccess.swift */,
+			);
+			path = MapAppUITests;
+			sourceTree = "<group>";
+		};
 		E1D259CE2B84F188006EB6BC /* network */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +422,24 @@
 			productReference = E10B79772B88082800CA5514 /* MapAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E183AFB72B888EC400149975 /* MapAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E183AFC02B888EC400149975 /* Build configuration list for PBXNativeTarget "MapAppUITests" */;
+			buildPhases = (
+				E183AFB42B888EC400149975 /* Sources */,
+				E183AFB52B888EC400149975 /* Frameworks */,
+				E183AFB62B888EC400149975 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E183AFBF2B888EC400149975 /* PBXTargetDependency */,
+			);
+			name = MapAppUITests;
+			productName = MapAppUITests;
+			productReference = E183AFB82B888EC400149975 /* MapAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -409,6 +456,10 @@
 					E12EBAF52B8367C100E0BBE2 = {
 						CreatedOnToolsVersion = 15.2;
 						LastSwiftMigration = 1520;
+						TestTargetID = E12EBAE52B8367BD00E0BBE2;
+					};
+					E183AFB72B888EC400149975 = {
+						CreatedOnToolsVersion = 15.2;
 						TestTargetID = E12EBAE52B8367BD00E0BBE2;
 					};
 				};
@@ -428,6 +479,7 @@
 			targets = (
 				E12EBAE52B8367BD00E0BBE2 /* MapApp */,
 				E12EBAF52B8367C100E0BBE2 /* MapAppTests */,
+				E183AFB72B888EC400149975 /* MapAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -447,7 +499,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1069B4B2B86322200D6AD04 /* MockNetworkResponse.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E183AFB62B888EC400149975 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +516,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E183AFD62B889DEE00149975 /* MockURLSession.swift in Sources */,
+				E183AFD32B889DE200149975 /* MockAlertHelper.swift in Sources */,
 				E12EBB222B83838500E0BBE2 /* UserLocationHelper.swift in Sources */,
 				E1D259D42B84F1FE006EB6BC /* NetworkClientImpl.swift in Sources */,
 				E12EBAEC2B8367BD00E0BBE2 /* MapScreen.swift in Sources */,
@@ -470,9 +530,14 @@
 				E12EBB1F2B83836300E0BBE2 /* UserLocationHelperImpl.swift in Sources */,
 				E1D259D02B84F1D8006EB6BC /* RandomLocationModel.swift in Sources */,
 				E1D259D22B84F1EE006EB6BC /* NetworkClientProtocol.swift in Sources */,
+				E183AFCA2B8893D400149975 /* UITestingHelper.swift in Sources */,
 				E1069B352B862C4500D6AD04 /* AlertHelperImpl.swift in Sources */,
+				E183AFD42B889DE600149975 /* MockCLLocationManager.swift in Sources */,
+				E183AFD52B889DE900149975 /* MockNetworkClient.swift in Sources */,
 				E1069B322B862BC800D6AD04 /* AlertHelper.swift in Sources */,
 				E12EBB292B839A4500E0BBE2 /* Destination.swift in Sources */,
+				E183AFD72B889DF200149975 /* MockUserLocationHelper.swift in Sources */,
+				E183AFD22B889DC500149975 /* StaticLoader.swift in Sources */,
 				E1069B2E2B862B7D00D6AD04 /* AlertItem.swift in Sources */,
 				E12EBB252B83909D00E0BBE2 /* WelcomeScreen.swift in Sources */,
 				E1069B302B862B9E00D6AD04 /* AlertStrings.swift in Sources */,
@@ -483,17 +548,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E192615C2B876D94006BF57B /* MockAlertHelper.swift in Sources */,
-				E1069B562B863B8300D6AD04 /* MockURLSession.swift in Sources */,
 				E1069B292B862AB600D6AD04 /* WelcomeScreenViewModelTest.swift in Sources */,
 				E1069B3E2B862F5A00D6AD04 /* NetworkClientImplTest.swift in Sources */,
-				E1069B4F2B86333D00D6AD04 /* StaticLoader.swift in Sources */,
 				E1069B402B862F7500D6AD04 /* UserLocationHelperImplTest.swift in Sources */,
-				E192615A2B87670C006BF57B /* MockUserLocationHelper.swift in Sources */,
 				E1069B3C2B862F3B00D6AD04 /* AlertHelperImplTest.swift in Sources */,
-				E1069B542B86352800D6AD04 /* MockNetworkClient.swift in Sources */,
-				E192615E2B879532006BF57B /* MockLocationManager.swift in Sources */,
 				E1069B2B2B862AD700D6AD04 /* MapScreenViewModelTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E183AFB42B888EC400149975 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E183AFDC2B88DA1E00149975 /* MapScreenUITest.swift in Sources */,
+				E183AFC62B888F3300149975 /* WelcomeScreenUITestSuccess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +572,11 @@
 			isa = PBXTargetDependency;
 			target = E12EBAE52B8367BD00E0BBE2 /* MapApp */;
 			targetProxy = E12EBAF72B8367C100E0BBE2 /* PBXContainerItemProxy */;
+		};
+		E183AFBF2B888EC400149975 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E12EBAE52B8367BD00E0BBE2 /* MapApp */;
+			targetProxy = E183AFBE2B888EC400149975 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -730,6 +803,40 @@
 			};
 			name = Release;
 		};
+		E183AFC12B888EC400149975 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5MW8948NCL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tharin.MapAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MapApp;
+			};
+			name = Debug;
+		};
+		E183AFC22B888EC400149975 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5MW8948NCL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tharin.MapAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MapApp;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -756,6 +863,15 @@
 			buildConfigurations = (
 				E12EBB0E2B8367C100E0BBE2 /* Debug */,
 				E12EBB0F2B8367C100E0BBE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E183AFC02B888EC400149975 /* Build configuration list for PBXNativeTarget "MapAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E183AFC12B888EC400149975 /* Debug */,
+				E183AFC22B888EC400149975 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
