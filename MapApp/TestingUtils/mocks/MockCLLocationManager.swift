@@ -9,7 +9,6 @@ import Foundation
 import MapKit
 @testable import MapApp
 
-
 final class MockCLLocationManagerSuccess: CLLocationManager {
     
     override var location: CLLocation?  {
