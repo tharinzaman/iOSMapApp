@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 final class NetworkClientImpl: NetworkClientProtocol {
-    
+        
     private let baseURL = "https://api.3geonames.org/"
     private let randomUKLandEndpoint = "randomland.UK.json"
     

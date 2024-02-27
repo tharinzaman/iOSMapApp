@@ -7,13 +7,14 @@
 
 import Foundation
 import MapKit
+import AVFoundation
 
 class UserLocationHelperImpl: NSObject, UserLocationHelper {
     
-    var locationManager: CLLocationManager?
+    var locationManager: LocationManager?
     
     init(
-        locationManager: CLLocationManager? = nil
+        locationManager: LocationManager? = nil
     ) {
         self.locationManager = locationManager
     }
@@ -30,7 +31,7 @@ class UserLocationHelperImpl: NSObject, UserLocationHelper {
         guard let locationManager else {
             return false
         }
-        
+            
         switch locationManager.authorizationStatus {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()

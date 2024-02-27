@@ -7,11 +7,10 @@
 
 import Foundation
 import MapKit
-@testable import MapApp
 
-final class MockCLLocationManagerSuccess: CLLocationManager {
+final class MockCLLocationManagerSuccess: LocationManager {
     
-    override var location: CLLocation?  {
+    var location: CLLocation?  {
         return CLLocation(
             latitude: CLLocationDegrees(
                 50
@@ -22,7 +21,7 @@ final class MockCLLocationManagerSuccess: CLLocationManager {
         )
     }
     
-    override var desiredAccuracy: CLLocationAccuracy {
+    var desiredAccuracy: CLLocationAccuracy {
         get {
             return kCLLocationAccuracyBest
         }
@@ -31,22 +30,22 @@ final class MockCLLocationManagerSuccess: CLLocationManager {
         }
     }
     
-    override var authorizationStatus: CLAuthorizationStatus {
+    var authorizationStatus: CLAuthorizationStatus {
         return .authorizedAlways
     }
     
-    override func requestWhenInUseAuthorization() {
+    func requestWhenInUseAuthorization() {
         return
     }
 }
 
-final class MockCLLocationManagerFailure: CLLocationManager {
+final class MockCLLocationManagerFailure: LocationManager {
     
-    override var location: CLLocation?  {
+    var location: CLLocation?  {
         return nil
     }
     
-    override var desiredAccuracy: CLLocationAccuracy {
+    var desiredAccuracy: CLLocationAccuracy {
         get {
             return 0.0
         }
@@ -55,11 +54,11 @@ final class MockCLLocationManagerFailure: CLLocationManager {
         }
     }
     
-    override var authorizationStatus: CLAuthorizationStatus {
+    var authorizationStatus: CLAuthorizationStatus {
         return .denied
     }
     
-    override func requestWhenInUseAuthorization() {
+    func requestWhenInUseAuthorization() {
         return
     }
 }
