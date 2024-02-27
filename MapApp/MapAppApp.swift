@@ -14,7 +14,7 @@ struct MapAppApp: App {
         WindowGroup {
             WelcomeScreen(
                 locationHelper: UserLocationHelperImpl(
-                    locationManager: CLLocationManager.locationServicesEnabled() ? CLLocationManager() as? any LocationManager : nil
+                    locationManager: CLLocationManager.locationServicesEnabled() ? CLLocationManager() : nil
                 ),
                 alertHelper: AlertHelperImpl(),
                 client: NetworkClientImpl()

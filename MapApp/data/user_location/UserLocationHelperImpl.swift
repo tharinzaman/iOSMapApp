@@ -35,6 +35,7 @@ class UserLocationHelperImpl: NSObject, UserLocationHelper {
         switch locationManager.authorizationStatus {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
+            return true
         case .restricted:
             throw UserLocationError.restrictedPermissions
         case .denied:
@@ -47,7 +48,6 @@ class UserLocationHelperImpl: NSObject, UserLocationHelper {
             throw UserLocationError.unresolvedPermissions
         }
         
-        return false
     }
     
     func getUserLocation() throws -> MKCoordinateRegion? {
