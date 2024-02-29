@@ -57,7 +57,7 @@ struct WelcomeScreen: View {
                 Color(
                     .white
                 )
-                VStackLayout(
+                VStack(
                     alignment: .center,
                     spacing: 150
                 ) {
